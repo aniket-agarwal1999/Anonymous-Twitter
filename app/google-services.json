@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "79376285576",
+    "firebase_url": "https://loginscreen-832d8.firebaseio.com",
+    "project_id": "loginscreen-832d8",
+    "storage_bucket": "loginscreen-832d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79376285576:android:98406cad65881dfa",
+        "android_client_info": {
+          "package_name": "com.example.aniket.loginscreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79376285576-v7q0lk73noagessv0rpqog0uism8p4ef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQOQGuJu8nSonPX8GjHPDh5ux4DT4Y5b8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79376285576-v7q0lk73noagessv0rpqog0uism8p4ef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
