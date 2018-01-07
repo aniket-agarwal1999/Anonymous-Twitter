@@ -27,12 +27,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button post, camera;
     ProgressDialog progressDialog;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference, databaseReference_images;
     private StorageReference storageReference;
     List <Message> messageList = new ArrayList<>();
+    List <MessageImage> messageImageList = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-
+    RecyclerView.Adapter adapter_images;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
         progressDialog.show();
 
+        databaseReference_images = FirebaseDatabase.getInstance().getReference("Image Messages");
         databaseReference = FirebaseDatabase.getInstance().getReference("Messages");
         storageReference = FirebaseStorage.getInstance().getReference("images");
 
+        //This is used to fetch the data from the Firebase Database, that is, the messages
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -73,7 +76,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        storageReference.getActiveDownloadTasks(new Active)
+
+        //From here on I am starting to display the ValueEventListener for the Images to be displayed
+        databaseReference_images.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    MessageImage messageImage = dataSnapshot.getValue(MessageImage.class);
+                    messageImageList.add(messageImage);
+                }
+
+                adapter_images = new RecyclerViewAdapterImages(MainActivity.this, messageImageList);
+                recyclerView.setAdapter(adapter_images);
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                progressDialog.dismiss();
+            }
+        });
 
         post.setOnClickListener(new View.OnClickListener() {
             @Override
