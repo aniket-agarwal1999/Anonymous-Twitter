@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -64,7 +66,8 @@ public class RecyclerViewAdapterImages extends RecyclerView.Adapter<RecyclerView
 
         holder.BodyTextView.setText(message.getBody());
 
-        Glide.with(this.context).load("gs://loginscreen-832d8.appspot.com/"+message.getImageName())
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(message.getImageName());
+        Glide.with(this.context).using(new FirebaseImageLoader()).load(storageReference)
                 .into(holder.ImageShow);
     }
 
